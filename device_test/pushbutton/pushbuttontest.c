@@ -12,10 +12,10 @@ int main(int argc, char **argv)
 
     dev = open("/dev/pushbutton", O_WRONLY);
 
-    if (dev != -1) 
+    if (dev != -1)
     {
         buff = (unsigned char) strtol(argv[1], NULL, 10);
-        write(dev, &res, sizeof(res));
+        read(dev, &res, sizeof(res));
         close(dev);
     } else {
         fprintf(stderr, "error opening device\n");
