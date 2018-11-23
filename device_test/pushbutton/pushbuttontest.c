@@ -16,7 +16,7 @@ int main(int argc, char **argv)
     {
         buff = (unsigned char) strtol(argv[1], NULL, 10);
         read(dev, &res, sizeof(res));
-        fprintf("VALUE : %d", res);
+        fprintf(stderr, "VALUE : %d", res);
         close(dev);
     } else {
         fprintf(stderr, "error opening device\n");
