@@ -14,7 +14,7 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    dev = open("/dev/motor", O_WRONLY);
+    dev = open("/dev/motorspeed", O_WRONLY);
 
     if (dev != -1)
     {

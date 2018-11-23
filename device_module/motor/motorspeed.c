@@ -38,7 +38,7 @@ int motor_open(struct inode *inodep, struct file *filep)
 
 int motor_release(struct inode *inodep, struct file *filep)
 {
-	if(!motor_ioremap)
+	if(!motor_spd_ioremap)
 	{
 		return 0;
 	}
@@ -92,7 +92,7 @@ static struct miscdevice motor_spd_driver =
 
 int motor_init(void)
 {
-	misc_register(&motor_driver);
+	misc_register(&motor_spd_driver);
 	printk(KERN_INFO "driver : %s driver init\n", MOTOR_SPD_NAME);
 
 	return 0;
@@ -100,7 +100,7 @@ int motor_init(void)
 
 void motor_exit(void)
 {
-	misc_deregister(&motor_driver);
+	misc_deregister(&motor_spd_driver);
 	printk(KERN_INFO "driver : %s driver exit\n", MOTOR_SPD_NAME);
 }
 
