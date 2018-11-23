@@ -50,7 +50,7 @@ int pushb_release(struct inode *inodep, struct file *filep)
 	return 0;
 }
 
-ssize_t pushb_read(struct file *filep, const char *data, size_t length, loff_t *off_what)
+ssize_t pushb_read(struct file *filep, char *data, size_t length, loff_t *off_what)
 {
 	int i, num, ret;
   unsigned int out;
