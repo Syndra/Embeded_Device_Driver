@@ -52,8 +52,8 @@ int buzzer_release(struct inode *inodep, struct file *filep)
 static void __buzzer_write_from_int(int num)
 {
 	printk(KERN_INFO "INPUT FROM USERSPACE VALUE = %d\n", num);
-	
-  if(num == 0)
+
+  if(num == 768)
     iowrite8(0x00, buzzer_ioremap);
   else
     iowrite8(0x01, buzzer_ioremap);
