@@ -15,11 +15,14 @@
 #define DRIVER_DESC "driver for motor on FPGA"
 
 #define MOTOR_NAME "motor"
+#define MOTOR_SPD_NAME "motorspd"
 #define MOTOR_MODULE VERSION "motor V1.0"
 #define MOTOR_ADDR 0x0800000C
+#define MOTOR_SPD_ADDR 0x80000010
 #define MOTOR_REG_SIZE 0x02
 
 static unsigned short *motor_ioremap = NULL;
+static unsigned short *motor_spd_ioremap = NULL;
 
 int motor_open(struct inode *inodep, struct file *filep)
 {
@@ -32,6 +35,14 @@ int motor_open(struct inode *inodep, struct file *filep)
 		return -EBUSY;
 	}
 	motor_ioremap = ioremap(MOTOR_ADDR, MOTOR_REG_SIZE);
+
+	reg = request_mem_region((unsigned long) MOTOR_SPD_ADDR, MOTOR_REG_SIZE, MOTOR_SPD_NAME);
+	if (reg == NULL)
+	{
+		printk(KERN_ERR "Fail to get 0x%x\n", (unsigned int) MOTOR_SPD_ADDR);
+		return -EBUSY;
+	}
+	motor_spd_ioremap = ioremap(MOTOR_SPD_ADDR, MOTOR_REG_SIZE);
 
 	return 0;
 }
@@ -46,6 +57,9 @@ int motor_release(struct inode *inodep, struct file *filep)
 	iounmap(motor_ioremap);
 	release_mem_region((unsigned long) MOTOR_ADDR, MOTOR_REG_SIZE);
 
+	iounmap(motor_spd_ioremap);
+	release_mem_region((unsigned long) MOTOR_SPD_ADDR, MOTOR_REG_SIZE);
+
 	return 0;
 }
 
@@ -54,7 +68,10 @@ static void __motor_write_from_int(int num)
 	if(num == 768)
 		iowrite8(0x00, motor_ioremap);
 	else
+	{
 		iowrite8(0x01, motor_ioremap);
+		iowrite8(0x00, motor_spd_ioremap);
+	}
 }
 
 ssize_t motor_write_from_int(struct file *filep, const char *data, size_t length, loff_t *off_what)
