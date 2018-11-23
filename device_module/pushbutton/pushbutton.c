@@ -56,6 +56,9 @@ ssize_t pushb_read(struct file *filep, char *data, size_t length, loff_t *off_wh
   unsigned int out;
 	unsigned char pushb_data[NUM_PUSHBS] = {0, };
 
+
+  printk(KERN_INFO "BUTTON STATUS = %d\n", out);
+
 	if (ret < 0)
 	{
 		printk(KERN_ERR "data copy form userspace failed \n");
