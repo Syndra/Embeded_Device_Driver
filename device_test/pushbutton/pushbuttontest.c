@@ -10,7 +10,7 @@ int main(int argc, char **argv)
     unsigned char buff;
     unsigned int res;
 
-    dev = open("/dev/pushbutton", O_RONLY);
+    dev = open("/dev/pushbutton", O_RDWR);
 
     if (dev != -1)
     {
