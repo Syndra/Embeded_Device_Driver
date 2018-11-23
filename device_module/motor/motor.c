@@ -36,7 +36,7 @@ int motor_open(struct inode *inodep, struct file *filep)
 	}
 	motor_ioremap = ioremap(MOTOR_ADDR, MOTOR_REG_SIZE);
 
-	reg = request_mem_region((unsigned long) MOTOR_SPD_ADDR, MOTOR_REG_SIZE, MOTOR_SPD_NAME);
+	reg = request_mem_region((unsigned long) MOTOR_SPD_ADDR, MOTOR_REG_SIZE, MOTOR_NAME);
 	if (reg == NULL)
 	{
 		printk(KERN_ERR "Fail to get 0x%x\n", (unsigned int) MOTOR_SPD_ADDR);
