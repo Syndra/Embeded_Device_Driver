@@ -53,9 +53,9 @@ int pushb_release(struct inode *inodep, struct file *filep)
 ssize_t pushb_read(struct file *filep, char *data, size_t length, loff_t *off_what)
 {
 	int ret;
-  unsigned int out;
+  unsigned int out = 100;
 
-  out = ioread16(pushb_ioremap);
+  //out = ioread16(pushb_ioremap);
 
   printk(KERN_INFO "BUTTON STATUS = %d\n", out);
 

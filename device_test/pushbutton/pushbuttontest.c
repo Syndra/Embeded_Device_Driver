@@ -15,7 +15,7 @@ int main(int argc, char **argv)
     if (dev != -1)
     {
         res = read(dev, &res, sizeof(res));
-        fprintf(stderr, "VALUE : %d", res);
+        fprintf(stderr, "VALUE : %d\n", res);
         close(dev);
     }
     else {
