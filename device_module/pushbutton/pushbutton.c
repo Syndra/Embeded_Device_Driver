@@ -62,7 +62,7 @@ ssize_t pushb_read(struct file *filep, const char *data, size_t length, loff_t *
 		return 0;
 	}
 
-  out = ioread(pushb_ioremap);
+  out = ioread16(pushb_ioremap);
 
   printk(KERN_INFO "BUTTON STATUS = %d\n", out);
 
