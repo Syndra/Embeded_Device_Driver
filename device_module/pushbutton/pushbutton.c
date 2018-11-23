@@ -20,7 +20,7 @@
 #define PUSHB_REG_SIZE 0x02
 #define NUM_PUSHBS 9
 
-static unsigned short *sseg_ioremap = NULL;
+static unsigned short *pushb_ioremap = NULL;
 
 int pushb_open(struct inode *inodep, struct file *filep)
 {
@@ -79,29 +79,29 @@ static struct file_operations pushb_fops =
 	.release = pushb_release,
 };
 
-static struct miscdevice sseg_driver =
+static struct miscdevice pushb_driver =
 {
-	.fops = &sseg_fops,
+	.fops = &pushb_fops,
 	.name = PUSHB_NAME,
 	.minor = MISC_DYNAMIC_MINOR,
 };
 
-int sseg_init(void)
+int pushb_init(void)
 {
-	misc_register(&sseg_driver);
+	misc_register(&pushb_driver);
 	printk(KERN_INFO "driver : %s driver init\n", PUSHB_NAME);
 
 	return 0;
 }
 
-void sseg_exit(void)
+void pushb_exit(void)
 {
-	misc_deregister(&sseg_driver);
+	misc_deregister(&pushb_driver);
 	printk(KERN_INFO "driver : %s driver exit\n", PUSHB_NAME);
 }
 
-module_init(sseg_init);
-module_exit(sseg_exit);
+module_init(pushb_init);
+module_exit(pushb_exit);
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
