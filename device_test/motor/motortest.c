@@ -8,14 +8,18 @@ int main(int argc, char **argv)
 {
     int dev;
     unsigned char buff;
-    if (argc <= 1) {
+    if (argc <= 1)
+    {
         fprintf(stderr, "usage: %s num\n", argv[0]);
         return -1;
     }
-    dev = open("/dev/led", O_WRONLY);
-    if (dev != -1) {
-        buff = (unsigned char) strtol(argv[1], NULL, 10);
-        write(dev, &buff, 1);
+
+    dev = open("/dev/motor", O_WRONLY);
+
+    if (dev != -1)
+    {
+        buff = (int) strtol(argv[1], NULL, 10);
+        write(dev, &buff, sizeof(buff));
         close(dev);
     } else {
         fprintf(stderr, "error opening device\n");
@@ -23,4 +27,3 @@ int main(int argc, char **argv)
     }
     return 0;
 }
-
