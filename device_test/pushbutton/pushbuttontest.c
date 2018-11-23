@@ -8,13 +8,13 @@ int main(int argc, char **argv)
 {
     int dev;
     unsigned char buff;
-    unsigned int res;
+    unsigned short res;
 
     dev = open("/dev/pushbutton", O_RDWR);
 
     if (dev != -1)
     {
-        read(dev, &res, sizeof(res));
+        read(dev, &res, sizeof(unsigned short));
         fprintf(stderr, "VALUE : %d\n", res);
         close(dev);
     }

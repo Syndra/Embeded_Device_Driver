@@ -50,16 +50,16 @@ int pushb_release(struct inode *inodep, struct file *filep)
 	return 0;
 }
 
-ssize_t pushb_read(struct file *filep, char *data, size_t length, loff_t *off_what)
+ssize_t pushb_read(struct file *filep, unsigned short *data, size_t length, loff_t *off_what)
 {
 	int ret;
-  unsigned int out = 100;
+  unsigned short out = 100;
 
-  //out = ioread16(pushb_ioremap);
+  out = ioread16(pushb_ioremap);
 
   printk(KERN_INFO "BUTTON STATUS = %d\n", out);
 
-	ret  = copy_to_user(&out, data, sizeof(unsigned int));
+	ret  = copy_to_user(&out, data, sizeof(unsigned short));
 
 	return length;
 }
