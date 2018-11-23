@@ -12,7 +12,7 @@
 #include <asm/io.h>
 
 #define DRIVER_AUTHOR "CAUCSE TEAM FRIDAY"
-#define DRIVER_DESC "driver for 7-Segment on FPGA"
+#define DRIVER_DESC "driver for buzzer on FPGA"
 
 #define BUZZER_NAME "buzzer"
 #define BUZZER_MODULE VERSION "buzzer V1.0"

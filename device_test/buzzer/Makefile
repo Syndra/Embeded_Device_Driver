@@ -4,14 +4,13 @@ LD = arm-none-linux-gnueabi-ld
 CFLAGS = -DNO_DEBUG
 LDFLAGS = -static
 
-default: ledtest
+default: buzzertest
 
-ledtest: ledtest.o 
-	$(CC) $(LDFLAGS) -o ledtest ledtest.o
+buzzertest: buzzertest.o
+	$(CC) $(LDFLAGS) -o buzzertest buzzertest.o
 
-ledtest.o: ledtest.c
-	$(CC) $(CFLAGS) -c ledtest.c -o ledtest.o
+buzzertest.o: buzzertest.c
+	$(CC) $(CFLAGS) -c buzzertest.c -o buzzertest.o
 
 clean:
-	rm -f ledtest ledtest.o 
-
+	rm -f buzzertest buzzertest.o
