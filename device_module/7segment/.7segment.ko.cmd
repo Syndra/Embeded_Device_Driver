@@ -1,0 +1,1 @@
+cmd_/home/lenny/Workspace/driver_module/7segment/7segment.ko := arm-none-linux-gnueabi-ld -r  -T /home/lenny/kernelsource/achroimx_kernel/scripts/module-common.lds --build-id  -o /home/lenny/Workspace/driver_module/7segment/7segment.ko /home/lenny/Workspace/driver_module/7segment/7segment.o /home/lenny/Workspace/driver_module/7segment/7segment.mod.o

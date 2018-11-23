@@ -1,0 +1,1 @@
+cmd_/home/lenny/Workspace/driver_module/hello/hello.ko := arm-none-linux-gnueabi-ld -r  -T /home/lenny/kernelsource/achroimx_kernel/scripts/module-common.lds --build-id  -o /home/lenny/Workspace/driver_module/hello/hello.ko /home/lenny/Workspace/driver_module/hello/hello.o /home/lenny/Workspace/driver_module/hello/hello.mod.o

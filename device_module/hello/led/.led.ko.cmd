@@ -1,0 +1,1 @@
+cmd_/home/lenny/Workspace/driver_module/hello/led/led.ko := arm-none-linux-gnueabi-ld -r  -T /home/lenny/kernelsource/achroimx_kernel/scripts/module-common.lds --build-id  -o /home/lenny/Workspace/driver_module/hello/led/led.ko /home/lenny/Workspace/driver_module/hello/led/led.o /home/lenny/Workspace/driver_module/hello/led/led.mod.o
