@@ -66,7 +66,7 @@ ssize_t pushb_read(struct file *filep, const char *data, size_t length, loff_t *
 
   printk(KERN_INFO "BUTTON STATUS = %d\n", out);
 
-	//ret  = copy_to_user(&num, data, sizeof(int));
+	ret  = copy_to_user(&out, data, sizeof(unsigned int));
 
 	return length;
 }

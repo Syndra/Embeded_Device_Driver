@@ -11,15 +11,14 @@ int main(int argc, char **argv)
     unsigned int res;
 
     dev = open("/dev/pushbutton", O_WRONLY);
-    fprintf(stderr, "opened!", res);
 
     if (dev != -1)
     {
-        fprintf(stderr, "VALUE : %d", res);
         read(dev, &res, sizeof(res));
         fprintf(stderr, "VALUE : %d", res);
         close(dev);
-    } else {
+    }
+    else {
         fprintf(stderr, "error opening device\n");
         return -1;
     }
