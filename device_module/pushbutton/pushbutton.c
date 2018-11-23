@@ -24,8 +24,6 @@ static unsigned short *pushb_ioremap = NULL;
 
 int pushb_open(struct inode *inodep, struct file *filep)
 {
-  printk(KERN_ERR "pushb open!\n");
-
 	struct resource *reg;
 
 	reg = request_mem_region((unsigned long) PUSHB_ADDR, PUSHB_REG_SIZE, PUSHB_NAME);
@@ -54,12 +52,8 @@ int pushb_release(struct inode *inodep, struct file *filep)
 
 ssize_t pushb_read(struct file *filep, char *data, size_t length, loff_t *off_what)
 {
-	int i, num, ret;
+	int ret;
   unsigned int out;
-	unsigned char pushb_data[NUM_PUSHBS] = {0, };
-
-
-  printk(KERN_INFO "BUTTON STATUS = %d\n", out);
 
   out = ioread16(pushb_ioremap);
 
