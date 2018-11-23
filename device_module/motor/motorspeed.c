@@ -14,24 +14,24 @@
 #define DRIVER_AUTHOR "CAUCSE TEAM FRIDAY"
 #define DRIVER_DESC "driver for motor on FPGA"
 
-#define MOTOR_NAME "motor"
-#define MOTOR_MODULE VERSION "motor V1.0"
-#define MOTOR_ADDR 0x0800000C
+#define MOTOR_SPD_NAME "motorspeed"
+#define MOTOR_MODULE VERSION "motorspeed V1.0"
+#define MOTOR_SPD_ADDR 0x80000010
 #define MOTOR_REG_SIZE 0x02
 
-static unsigned short *motor_ioremap = NULL;
+static unsigned short *motor_spd_ioremap = NULL;
 
 int motor_open(struct inode *inodep, struct file *filep)
 {
 	struct resource *reg;
 
-	reg = request_mem_region((unsigned long) MOTOR_ADDR, MOTOR_REG_SIZE, MOTOR_NAME);
+	reg = request_mem_region((unsigned long) MOTOR_SPD_ADDR, MOTOR_REG_SIZE, MOTOR_SPD_NAME);
 	if (reg == NULL)
 	{
-		printk(KERN_ERR "Fail to get 0x%x\n", (unsigned int) MOTOR_ADDR);
+		printk(KERN_ERR "Fail to get 0x%x\n", (unsigned int) MOTOR_SPD_ADDR);
 		return -EBUSY;
 	}
-	motor_ioremap = ioremap(MOTOR_ADDR, MOTOR_REG_SIZE);
+	motor_spd_ioremap = ioremap(MOTOR_SPD_ADDR, MOTOR_REG_SIZE);
 
 	return 0;
 }
@@ -43,8 +43,8 @@ int motor_release(struct inode *inodep, struct file *filep)
 		return 0;
 	}
 
-	iounmap(motor_ioremap);
-	release_mem_region((unsigned long) MOTOR_ADDR, MOTOR_REG_SIZE);
+	iounmap(motor_spd_ioremap);
+	release_mem_region((unsigned long) MOTOR_SPD_ADDR, MOTOR_REG_SIZE);
 
 	return 0;
 }
@@ -52,10 +52,10 @@ int motor_release(struct inode *inodep, struct file *filep)
 static void __motor_write_from_int(int num)
 {
 	if(num == 768)
-		iowrite8(0x00, motor_ioremap);
+		iowrite8(0x00, motor_spd_ioremap);
 	else
 	{
-		iowrite8(0x01, motor_ioremap);
+		iowrite8(0x05, motor_spd_ioremap);
 	}
 }
 
@@ -75,7 +75,7 @@ ssize_t motor_write_from_int(struct file *filep, const char *data, size_t length
 	return length;
 }
 
-static struct file_operations motor_fops =
+static struct file_operations motor_spd_fops =
 {
 	.owner = THIS_MODULE,
 	.open = motor_open,
@@ -83,17 +83,17 @@ static struct file_operations motor_fops =
 	.release = motor_release,
 };
 
-static struct miscdevice motor_driver =
+static struct miscdevice motor_spd_driver =
 {
-	.fops = &motor_fops,
-	.name = MOTOR_NAME,
+	.fops = &motor_spd_fops,
+	.name = MOTOR_SPD_NAME,
 	.minor = MISC_DYNAMIC_MINOR,
 };
 
 int motor_init(void)
 {
 	misc_register(&motor_driver);
-	printk(KERN_INFO "driver : %s driver init\n", MOTOR_NAME);
+	printk(KERN_INFO "driver : %s driver init\n", MOTOR_SPD_NAME);
 
 	return 0;
 }
@@ -101,7 +101,7 @@ int motor_init(void)
 void motor_exit(void)
 {
 	misc_deregister(&motor_driver);
-	printk(KERN_INFO "driver : %s driver exit\n", MOTOR_NAME);
+	printk(KERN_INFO "driver : %s driver exit\n", MOTOR_SPD_NAME);
 }
 
 module_init(motor_init);
