@@ -4,7 +4,7 @@ LD = arm-none-linux-gnueabi-ld
 CFLAGS = -DNO_DEBUG
 LDFLAGS = -static
 
-default: motortest motorspeedtest
+default: motortest
 
 motortest: motortest.o
 	$(CC) $(LDFLAGS) -o motortest motortest.o
@@ -20,4 +20,4 @@ motorspeedtest.o: motorspeedtest.c
 
 clean:
 	rm -f motortest motortest.o
-	rm -f motorspeedtest motorspeedtest.o 
+	rm -f motorspeedtest motorspeedtest.o

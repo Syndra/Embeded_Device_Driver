@@ -17,7 +17,7 @@
 #define MOTOR_NAME "motor"
 #define MOTOR_MODULE VERSION "motor V1.0"
 #define MOTOR_ADDR 0x0800000C
-#define MOTOR_REG_SIZE 0x02
+#define MOTOR_REG_SIZE 0x06
 
 static unsigned short *motor_ioremap = NULL;
 
@@ -52,10 +52,10 @@ int motor_release(struct inode *inodep, struct file *filep)
 static void __motor_write_from_int(int num)
 {
 	if(num == 768)
-		iowrite8(0x00, motor_ioremap);
+		iowrite8(0xFF0000, motor_ioremap);
 	else
 	{
-		iowrite8(0x01, motor_ioremap);
+		iowrite8(0x000001, motor_ioremap);
 	}
 }
 
