@@ -79,7 +79,7 @@ ssize_t pushb_read(struct file *filep, void* data, size_t length, loff_t *off_wh
 
 	printk(KERN_INFO "BUTTON TOTAL = %d\n", res);
 
-	ret  = copy_to_user(&res, data, sizeof(unsigned int));
+	copy_to_user(&res, data, sizeof(unsigned int));
 
 	return length;
 }
