@@ -66,9 +66,8 @@ ssize_t pushb_read(struct file *filep, void* data, size_t length, loff_t *off_wh
 		if(out == 1)
 			res++;
 		res*=10;
-
 	}
-
+	res/=10;
 	//reset pointers
 	for(i = 0; i < NUM_PUSHBS; i++)
 	{
