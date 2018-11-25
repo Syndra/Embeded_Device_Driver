@@ -54,6 +54,7 @@ int pushb_release(struct inode *inodep, struct file *filep)
 ssize_t pushb_read(struct file *filep, void* data, size_t length, loff_t *off_what)
 {
 	int i, j;
+  unsigned short out = 100;
 	unsigned int res = 0;
 
 	for(i = 0; i < NUM_PUSHBS; pushb_ioremap++)
