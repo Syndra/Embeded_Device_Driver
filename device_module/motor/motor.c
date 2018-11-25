@@ -55,14 +55,14 @@ static void __motor_write_from_int(int num)
 	{
 		iowrite8(0x00, motor_ioremap);
 		motor_ioremap++; motor_ioremap++;
-		iowrite8(0xFF, motor_ioremap);
+		iowrite8(0x00, motor_ioremap);
 		motor_ioremap--; motor_ioremap--;
 	}
 	else
 	{
 		iowrite8(0x01, motor_ioremap);
 		motor_ioremap++; motor_ioremap++;
-		iowrite8(0x00, motor_ioremap);
+		iowrite8(0xFF, motor_ioremap);
 		motor_ioremap--; motor_ioremap--;
 	}
 }
