@@ -64,10 +64,8 @@ ssize_t pushb_read(struct file *filep, void* data, size_t length, loff_t *off_wh
 		i++;
 
 		if(out == 1)
-		{
 			res++;
-			res*=10;
-		}
+		res*=10;
 
 	}
 
