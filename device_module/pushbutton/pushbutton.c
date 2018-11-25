@@ -61,6 +61,7 @@ ssize_t pushb_read(struct file *filep, unsigned short *data, size_t length, loff
 	{
 		out = ioread16(pushb_ioremap);
 		printk(KERN_INFO "BUTTON STATUS(NUM %d) = %d\n", i, out);
+		i++;
 	}
 
 	//reset pointers
