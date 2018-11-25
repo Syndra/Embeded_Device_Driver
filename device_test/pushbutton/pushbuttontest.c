@@ -9,13 +9,14 @@ int main(int argc, char **argv)
     int dev;
     unsigned char buff;
     unsigned int res;
+    int ret;
 
     dev = open("/dev/pushbutton", O_RDONLY);
 
     if (dev != -1)
     {
-        read(dev, &res, sizeof(unsigned int));
-        fprintf(stderr, "VALUE : %d\n", res);
+        ret = read(dev, &res, sizeof(unsigned int));
+        fprintf(stderr, "VALUE : %d RETURN : %d\n", res, ret);
         close(dev);
     }
     else {

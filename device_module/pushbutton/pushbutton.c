@@ -53,7 +53,7 @@ int pushb_release(struct inode *inodep, struct file *filep)
 
 ssize_t pushb_read(struct file *filep, void* data, size_t length, loff_t *off_what)
 {
-	int i, j;
+	int i, j, ret;
   unsigned short out = 100;
 	unsigned int res = 0;
 
@@ -77,7 +77,13 @@ ssize_t pushb_read(struct file *filep, void* data, size_t length, loff_t *off_wh
 
 	printk(KERN_INFO "BUTTON TOTAL = %d\n", res);
 
-	copy_to_user(&res, data, sizeof(unsigned int));
+	ret = copy_to_user(&res, data, sizeof(unsigned int));
+
+	if (ret < 0)
+	{
+		printk(KERN_ERR "data copy form userspace failed \n");
+		return 0;
+	}
 
 	return length;
 }
