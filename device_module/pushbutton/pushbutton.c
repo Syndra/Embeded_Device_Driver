@@ -51,17 +51,23 @@ int pushb_release(struct inode *inodep, struct file *filep)
 	return 0;
 }
 
-ssize_t pushb_read(struct file *filep, unsigned short *data, size_t length, loff_t *off_what)
+ssize_t pushb_read(struct file *filep, void* data, size_t length, loff_t *off_what)
 {
-	int ret;
-	int i;
-  unsigned int out = 100;
+	int i, j;
+	unsigned int res = 0;
 
 	for(i = 0; i < NUM_PUSHBS; pushb_ioremap++)
 	{
 		out = ioread16(pushb_ioremap);
 		printk(KERN_INFO "BUTTON STATUS(NUM %d) = %d\n", i, out);
 		i++;
+
+		if(out == 1)
+		{
+			res++;
+			res*=10;
+		}
+
 	}
 
 	//reset pointers
@@ -70,9 +76,9 @@ ssize_t pushb_read(struct file *filep, unsigned short *data, size_t length, loff
 		pushb_ioremap--;
 	}
 
-  //printk(KERN_INFO "BUTTON STATUS = %d\n", out);
+	printk(KERN_INFO "BUTTON TOTAL = %d\n", res);
 
-	ret  = copy_to_user(&out, data, sizeof(unsigned short));
+	ret  = copy_to_user(&res, data, sizeof(unsigned int));
 
 	return length;
 }
