@@ -54,12 +54,12 @@ static void __motor_write_from_int(int num)
 	if(num == 768)
 	{
 		iowrite8(0x00, motor_ioremap);
-		iowrite8(0x00, motor_ioremap+2);
+		iowrite8(0xFF, motor_ioremap+2);
 	}
 	else
 	{
 		iowrite8(0x01, motor_ioremap);
-		iowrite8(0xFF, motor_ioremap+2);
+		iowrite8(0x00, motor_ioremap+2);
 	}
 }
 
