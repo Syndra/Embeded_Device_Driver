@@ -16,8 +16,9 @@
 
 #define PUSHB_NAME "pushbutton"
 #define PUSHB_MODULE VERSION "pushbutton V1.0"
+
 #define PUSHB_ADDR 0x08000050
-#define PUSHB_REG_SIZE 0x02
+#define PUSHB_REG_SIZE 0x12
 #define NUM_PUSHBS 9
 
 static unsigned short *pushb_ioremap = NULL;
@@ -53,11 +54,22 @@ int pushb_release(struct inode *inodep, struct file *filep)
 ssize_t pushb_read(struct file *filep, unsigned short *data, size_t length, loff_t *off_what)
 {
 	int ret;
-  unsigned short out = 100;
+	int i;
+  unsigned int out = 100;
 
-  //out = ioread16(pushb_ioremap);
+	for(i = 0; i < NUM_PUSHBS; pushb_ioremap++)
+	{
+		out = ioread16(pushb_ioremap);
+		printk(KERN_INFO "BUTTON STATUS(NUM %d) = %d\n", i, out);
+	}
 
-  printk(KERN_INFO "BUTTON STATUS = %d\n", out);
+	//reset pointers
+	for(i = 0; i < NUM_PUSHBS; i++)
+	{
+		pushb_ioremap--;
+	}
+
+  //printk(KERN_INFO "BUTTON STATUS = %d\n", out);
 
 	ret  = copy_to_user(&out, data, sizeof(unsigned short));
 
