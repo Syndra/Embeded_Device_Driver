@@ -10,7 +10,7 @@
 #include <android/log.h>
 
 JNIEXPORT jint JNICALL
-Java_com_example_lenny_DeviceControl_DeviceController_BuzzerWrite(JNIEnv* jenv, jobject self, jint data)
+Java_com_example_lenny_devicecontrol_DeviceController_BuzzerWrite(JNIEnv* jenv, jobject self, jint data)
 {
     int dev;
 

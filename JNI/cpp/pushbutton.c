@@ -10,7 +10,7 @@
 #include <android/log.h>
 
 JNIEXPORT jint JNICALL
-Java_com_example_lenny_DeviceControl_DeviceController_PushbuttonRead(JNIEnv* jenv, jobject self)
+Java_com_example_lenny_devicecontrol_DeviceController_PushbuttonRead(JNIEnv* jenv, jobject self)
 {
     int dev;
     unsigned int res;

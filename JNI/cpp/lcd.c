@@ -15,7 +15,7 @@
 #define LCD_CLEAR		    _IO(LCD_MAGIC, 1)
 
 JNIEXPORT jint JNICALL
-Java_com_example_lenny_DeviceControl_DeviceController_LCDWrite(JNIEnv* jenv, jobject self, jstring line1, jstring line2)
+Java_com_example_lenny_devicecontrol_DeviceController_LcdWrite(JNIEnv* jenv, jobject self, jstring line1, jstring line2)
 {
     int dev, pos;
 
