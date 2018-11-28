@@ -5,7 +5,8 @@
 #include <linux/fs.h>
 #include <linux/ioport.h>
 #include <linux/kdev_t.h>
-#include <linux/miscdevice.h>
+#include <linux/delay.h>
+#include <linux/timer.h>
 
 #include <asm/uaccess.h>
 #include <asm/ioctl.h>
@@ -20,6 +21,11 @@
 #define BUZZER_REG_SIZE 0x01
 
 static unsigned short *buzzer_ioremap = NULL;
+
+static int notes_song1[30] =
+{
+	1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0
+};
 
 int buzzer_open(struct inode *inodep, struct file *filep)
 {
@@ -51,12 +57,24 @@ int buzzer_release(struct inode *inodep, struct file *filep)
 
 static void __buzzer_write_from_int(int num)
 {
+	int i;
+
 	printk(KERN_INFO "INPUT FROM USERSPACE VALUE = %d\n", num);
 
   if(num == 768)
     iowrite8(0x00, buzzer_ioremap);
   else
-    iowrite8(0x01, buzzer_ioremap);
+    // iowrite8(0x01, buzzer_ioremap);
+		{
+			for(i = 0; i < 30; i ++)
+			{
+				if(notes_song1[i] == 1)
+					iowrite8(0x01, buzzer_ioremap);
+				else
+					iowrite8(0x00, buzzer_ioremap);
+				msleep(250);
+			}
+		}
 }
 
 ssize_t buzzer_write_from_int(struct file *filep, const char *data, size_t length, loff_t *off_what)

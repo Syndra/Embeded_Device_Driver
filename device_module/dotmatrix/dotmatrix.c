@@ -353,7 +353,7 @@ static void __dmat_write_condition(int condition)
 
 								int linenum = condition_lineNum[condition-CHECK_CONDITION_VAR];
 
-								for(loops = 0; loops < linenum-10; loops++) {
+								for(loops = 0; loops < linenum-9; loops++) {
 
 										for (i=0; i<NUM_SCANLINES; i++)
 										{
@@ -397,7 +397,7 @@ ssize_t dmat_write_from_int(struct file *filep, const char *data, size_t length,
 		return -EFAULT;
 	}
 
-	if(num > 0 && num < 6)
+	if(num > 0 && num < 7)
 		__dmat_write_chesspiece(num-1);
 	else if(num > 100 && num < 106)
 		__dmat_write_condition(num);
