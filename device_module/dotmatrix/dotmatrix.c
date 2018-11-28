@@ -351,7 +351,7 @@ static void __dmat_write_condition(int condition)
 								else if(condition == LOSE_CONDITION_VAR)
 									cur_dotmap = dmat_fontmap_vertical_LOSE;
 
-								int linenum = condition_lineNum[condition-CHECK];
+								int linenum = condition_lineNum[condition-CHECK_CONDITION_VAR];
 
 								for(loops = 0; loops < linenum-10; loops++) {
 
@@ -400,7 +400,7 @@ ssize_t dmat_write_from_int(struct file *filep, const char *data, size_t length,
 	if(num > 0 && num < 6)
 		__dmat_write_chesspiece(num-1);
 	else if(num > 100 && num < 106)
-		__damt_write_condition(num);
+		__dmatt_write_condition(num);
 	else
 		__dmat_write_from_int(dmat_fontmap_clear);
 
