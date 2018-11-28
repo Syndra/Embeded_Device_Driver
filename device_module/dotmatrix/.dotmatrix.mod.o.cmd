@@ -1,8 +1,8 @@
-cmd_/home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.o := arm-none-linux-gnueabi-gcc -Wp,-MD,/home/lenny/Workspace/driver_module/dotmatrix/.dotmatrix.mod.o.d  -nostdinc -isystem /home/lenny/Workspace/bin/../lib/gcc/arm-none-linux-gnueabi/4.8.3/include -I/home/lenny/kernelsource/achroimx_kernel/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-mx6/include -Iarch/arm/plat-mxc/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -marm -fno-dwarf2-cfi-asm -fstack-protector -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(dotmatrix.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(dotmatrix)" -DMODULE  -c -o /home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.o /home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.c
+cmd_/home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/dotmatrix.mod.o := arm-none-linux-gnueabi-gcc -Wp,-MD,/home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/.dotmatrix.mod.o.d  -nostdinc -isystem /home/lenny/toolchain/arm-2014.05/bin/../lib/gcc/arm-none-linux-gnueabi/4.8.3/include -I/home/lenny/kernelsource/achroimx_kernel/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-mx6/include -Iarch/arm/plat-mxc/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -marm -fno-dwarf2-cfi-asm -fstack-protector -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(dotmatrix.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(dotmatrix)" -DMODULE  -c -o /home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/dotmatrix.mod.o /home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/dotmatrix.mod.c
 
-source_/home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.o := /home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.c
+source_/home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/dotmatrix.mod.o := /home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/dotmatrix.mod.c
 
-deps_/home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.o := \
+deps_/home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/dotmatrix.mod.o := \
     $(wildcard include/config/module/unload.h) \
   include/linux/module.h \
     $(wildcard include/config/symbol/prefix.h) \
@@ -60,7 +60,7 @@ deps_/home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.o := \
     $(wildcard include/config/ring/buffer.h) \
     $(wildcard include/config/numa.h) \
     $(wildcard include/config/compaction.h) \
-  /home/lenny/Workspace/lib/gcc/arm-none-linux-gnueabi/4.8.3/include/stdarg.h \
+  /home/lenny/toolchain/arm-2014.05/lib/gcc/arm-none-linux-gnueabi/4.8.3/include/stdarg.h \
   include/linux/linkage.h \
   /home/lenny/kernelsource/achroimx_kernel/arch/arm/include/asm/linkage.h \
   include/linux/bitops.h \
@@ -365,6 +365,6 @@ deps_/home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.o := \
   include/linux/vermagic.h \
   include/generated/utsrelease.h \
 
-/home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.o: $(deps_/home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.o)
+/home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/dotmatrix.mod.o: $(deps_/home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/dotmatrix.mod.o)
 
-$(deps_/home/lenny/Workspace/driver_module/dotmatrix/dotmatrix.mod.o):
+$(deps_/home/lenny/Workspace/Embeded_Device_Driver/device_module/dotmatrix/dotmatrix.mod.o):
