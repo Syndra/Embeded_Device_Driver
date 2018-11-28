@@ -400,6 +400,7 @@ ssize_t dmat_write_from_int(struct file *filep, const char *data, size_t length,
 	if(num > 0 && num < 6)
 		__dmat_write_chesspiece(num-1);
 	else if(num > 100 && num < 106)
+		__dmat_write_condition(num);
 	else
 		__dmat_write_from_int(dmat_fontmap_clear);
 
